@@ -5,6 +5,7 @@ SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
 
 # Generate locale C.UTF-8 for postgres and general locale data
 ENV LANG C.UTF-8
+
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -52,6 +53,12 @@ RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main' > /et
 # Install rtlcss (on Debian buster)
 RUN npm install -g rtlcss
 
+# Install Pip
+RUN pip3 install nibabel pydicom matplotlib pillow
+RUN pip3 install med2image
+
+#custom by Lv Quy depends for auto backup module
+RUN pip3 install paramiko
 
 # Install Odoo
 ENV ODOO_VERSION 15.0
@@ -87,9 +94,3 @@ USER odoo
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["odoo"]
 
-# Install Pip
-RUN pip3 install nibabel pydicom matplotlib pillow
-RUN pip3 install med2image
-
-#custom by Lv Quy depends for auto backup module
-RUN pip3 install paramiko
