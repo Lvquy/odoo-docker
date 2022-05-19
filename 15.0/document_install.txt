@@ -1,10 +1,10 @@
 Step1:
-	docker run -d -e POSTGRES_USER=odoo15 -e POSTGRES_PASSWORD=odoo15 -e POSTGRES_DB=postgres --name db15 postgres:10
+	docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -e POSTGRES_DB=postgres --name db15 postgres:10
 Step2:
 	docker build -t odooc .
 
 Step3:
-	docker run -v /home/myaddons:/mnt/extra-addons -p 8069:8069 --name odoo15 --link db15:db odooc
+	docker run -v /opt/odoo-15/myaddons:/mnt/extra-addons -p 80:8069 --name odoo15 --link db15:db odooc
 
 
 
