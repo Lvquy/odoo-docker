@@ -54,8 +54,7 @@ RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main' > /et
 RUN npm install -g rtlcss
 
 # Install Pip
-RUN pip3 install nibabel pydicom matplotlib pillow
-RUN pip3 install med2image
+RUN apt-get -y install python3-pip
 
 #custom by Lv Quy depends for auto backup module
 RUN pip3 install paramiko
