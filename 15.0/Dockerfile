@@ -53,9 +53,6 @@ RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main' > /et
 # Install rtlcss (on Debian buster)
 RUN npm install -g rtlcss
 
-# Install Pip
-RUN apt-get -y install python3-pip
-
 #custom by Lv Quy depends for auto backup module
 RUN pip3 install paramiko
 
@@ -88,7 +85,7 @@ ENV ODOO_RC /etc/odoo/odoo.conf
 COPY wait-for-psql.py /usr/local/bin/wait-for-psql.py
 
 # Set default user when running the container
-USER odoo
+USER root
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["odoo"]
